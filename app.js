@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var db = require('./db');
+//var db = require('./db');
 global.__root   = __dirname + '/'; 
 
 app.get('/api', function (req, res) {
