@@ -8,18 +8,10 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 var Post = require('./Post');
-var User = require(__root + 'user/User');
 
 // CREATES A NEW POST
-router.post('/', VerifyToken, function (req, res) {
-    var poster;
-    User.findById(req.userId, { password: 0 }, function (err, user) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
-        poster = user;
-    });
+router.post('/', function (req, res) {
     Post.create({
-        poster : poster,
         category : req.body.category,
         place : req.body.place,
         title : req.body.title,
